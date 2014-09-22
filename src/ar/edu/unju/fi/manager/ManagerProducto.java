@@ -4,7 +4,9 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import com.ejemplo.dominio.Producto;
+import ar.edu.unju.fi.model.Producto;
+
+
 
 public class ManagerProducto {
 	public static List<Producto> productos;	

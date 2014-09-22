@@ -3,8 +3,9 @@ package ar.edu.unju.fi.manager;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.ejemplo.dominio.Rol;
-import com.ejemplo.dominio.Usuario;
+import ar.edu.unju.fi.model.Rol;
+import ar.edu.unju.fi.model.Usuario;
+import ar.edu.unju.fi.model.constant.EstadoUsuario;
 
 public class ManagerUsuario {
 	public static List<Usuario> usuarios;
@@ -19,6 +20,15 @@ public class ManagerUsuario {
 			usuarios.add(new Usuario(4444, "Carlos", "Mamani", "4444", "NO ACTIVO", administrador));
 			usuarios.add(new Usuario(5555, "Rosana", "Mendez", "5555", "ACTIVO", administrador));
 		}
+	}
+	
+	public static Usuario validarUsuario(Integer dni, String pass){
+		for (Usuario u : usuarios) {
+			if (u.getDocumento().equals(dni)&& u.getEstado().equals(EstadoUsuario.ACTIVO)){
+				return u;
+			}
+		}
+		return null;
 	}
 
 }
