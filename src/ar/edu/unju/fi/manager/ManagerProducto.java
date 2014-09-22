@@ -27,4 +27,14 @@ public class ManagerProducto {
 		}
 	}
 
+	public static List<Producto> buscar(Integer codigo, String nombre, String estado){
+		List<Producto> encontrados=new ArrayList<Producto>();
+		
+		for(Producto p : productos){
+			if(p.getCodigo().equals(codigo) || (p.getNombre().contains(nombre)	&& !nombre.isEmpty()) || p.getEstado().equals(estado) ){
+				encontrados.add(p);
+			}
+		}
+		return encontrados;
+	}
 }

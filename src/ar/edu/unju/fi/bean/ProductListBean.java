@@ -20,9 +20,10 @@ public class ProductListBean implements Serializable{
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = -8194186654346103799L;
+	private static final long serialVersionUID = 1L;
 	private Integer codigo;
 	private String nombre;
+	private String estado;
 	private List<Producto>productList;
 
 	/**
@@ -30,19 +31,28 @@ public class ProductListBean implements Serializable{
 	 * @return
 	 */
 	public String search(){
-//		ProductDao dao = new ProductDaoImpl();
-		
-//		//FIXME aquí debería implementarse la búsqueda con parámetros
-//		System.out.println("codigo: " + codigo);
-//		System.out.println("nombre: " + nombre);
-		productList = ManagerProducto.productos;
-		
+		if(codigo.equals(0) && nombre.isEmpty() && estado.equals("TODO")){
+			productList = ManagerProducto.productos;
+		}else{
+			productList=ManagerProducto.buscar(codigo, nombre, estado);
+		}
+					
 		FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Buscando Productos...", "Se realizó la búsqueda de productos");
         FacesContext.getCurrentInstance().addMessage(null, message);
-		
 		return null;
 	}
 	
+	
+	public String getEstado() {
+		return estado;
+	}
+
+
+	public void setEstado(String estado) {
+		this.estado = estado;
+	}
+
+
 	public String getNombre() {
 		return nombre;
 	}
