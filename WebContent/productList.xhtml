@@ -1,0 +1,58 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<h:head>
+	<title>Productos</title>	
+	<h:outputStylesheet library="css" name="style.css"  />
+</h:head>
+
+
+<h:body>	
+	<h:outputText style="float:left" value="#{loginBean.nombre}, #{loginBean.apellido} - #{loginBean.rol}"/><br/>
+	<h2>Búsqueda de Productos</h2>
+	<h:form>
+<!-- 	<h:messages globalOnly="true"></h:messages> -->
+ 	<h:panelGrid columns="3">
+ 		
+ 		<h:outputText value="Código"/>
+      	<h:inputText id="codigo" value="#{productListBean.codigo}" converterMessage="Debe ingresar un Número">
+      		<f:convertNumber integerOnly="true" groupingUsed="false" />
+      	</h:inputText>
+      	<h:message for="codigo" showSummary="true" showDetail="false"  styleClass="error" />
+
+      	
+ 		<h:outputText value="Nombre"/>
+      	<h:inputText id="nombre" value="#{productListBean.nombre}" />      	
+        <h:commandButton id="submit" action="#{productListBean.search}"  value="Buscar"/> 
+
+	</h:panelGrid>
+	<h:dataTable id="products" value="#{productListBean.productList}" var="x">
+		<h:column>
+			<f:facet name="header" style="width:10%">
+				Código    
+			</f:facet>
+			<h:outputText value="#{x.codigo}"/>
+		</h:column>
+		<h:column>
+			<f:facet name="header" style="width:10%">
+				Nombre
+			</f:facet>		
+			<h:outputText value="#{x.nombre}"/>
+		</h:column>
+		<h:column>
+			<f:facet name="header" style="width:10%">
+				Precio Unitario    
+			</f:facet>
+			<h:outputText value="#{x.precioUnitario}">
+				<f:convertNumber pattern="$#,##0.00"/>				
+			</h:outputText>
+		</h:column>
+			
+	</h:dataTable>
+	
+	</h:form>
+</h:body>
+
+</html>

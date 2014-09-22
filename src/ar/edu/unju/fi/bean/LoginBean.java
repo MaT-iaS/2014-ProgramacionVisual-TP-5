@@ -20,14 +20,16 @@ public class LoginBean {
 	
 	public String validar(){
 		Usuario userLogueado=ManagerUsuario.validarUsuario(dni, password);
-		nombre=userLogueado.getNombre();
-		apellido=userLogueado.getApellido();
-		rol=userLogueado.getRol().getDescripcion();
+		
+		
 		if(userLogueado!=null){
-			
-			return "lista";
+			nombre=userLogueado.getNombre();
+			apellido=userLogueado.getApellido();
+			rol=userLogueado.getRol().getDescripcion();
+			return "productList";
+		}else{
+			return "error";
 		}
-		return "error";
 	}
 	
 	
